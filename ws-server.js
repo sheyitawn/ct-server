@@ -2,7 +2,7 @@ const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 const WebSocket = require('ws');
 
-const serialPort = new SerialPort({ path: 'COM7', baudRate: 9600 }); // Adjust COM port
+const serialPort = new SerialPort({ path: 'COM5', baudRate: 9600 }); // Adjust COM port
 const parser = serialPort.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
 const wss = new WebSocket.Server({ port: 4000 });
