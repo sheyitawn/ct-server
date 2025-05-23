@@ -19,14 +19,22 @@ wss.on('connection', (ws) => {
 
     try {
       const data = JSON.parse(str);
+
       if (data.type === 'updatePlayer') {
         currentPlayer = data.number;
         console.log(`👤 Updated currentPlayer: ${currentPlayer}`);
         return;
       }
+
+      if (data.type === 'shockPlayer') {
+        console.log(`🧪 Test shock for Player ${data.number}`);
+        shockPlayer(data.number);
+        return;
+      }
     } catch {
-      // Not JSON, fallback to Arduino
+      // fallback to Arduino
     }
+
 
     serialPort.write(str + '\n');
     console.log('Sent to Arduino:', str);
